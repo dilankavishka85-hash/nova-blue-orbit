@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BusinessRouteImport } from './routes/business'
+import { Route as ChatRouteImport } from './routes/chat'
+import { Route as LearningRouteImport } from './routes/learning'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TranslatorRouteImport } from './routes/translator'
+import { Route as WriterRouteImport } from './routes/writer'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BusinessRoute = BusinessRouteImport.update({
+  id: '/business',
+  path: '/business',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearningRoute = LearningRouteImport.update({
+  id: '/learning',
+  path: '/learning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TranslatorRoute = TranslatorRouteImport.update({
+  id: '/translator',
+  path: '/translator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WriterRoute = WriterRouteImport.update({
+  id: '/writer',
+  path: '/writer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/chat': typeof ChatRoute
+  '/learning': typeof LearningRoute
+  '/settings': typeof SettingsRoute
+  '/translator': typeof TranslatorRoute
+  '/writer': typeof WriterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/chat': typeof ChatRoute
+  '/learning': typeof LearningRoute
+  '/settings': typeof SettingsRoute
+  '/translator': typeof TranslatorRoute
+  '/writer': typeof WriterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/chat': typeof ChatRoute
+  '/learning': typeof LearningRoute
+  '/settings': typeof SettingsRoute
+  '/translator': typeof TranslatorRoute
+  '/writer': typeof WriterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/business'
+    | '/chat'
+    | '/learning'
+    | '/settings'
+    | '/translator'
+    | '/writer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/business'
+    | '/chat'
+    | '/learning'
+    | '/settings'
+    | '/translator'
+    | '/writer'
+  id:
+    | '__root__'
+    | '/'
+    | '/business'
+    | '/chat'
+    | '/learning'
+    | '/settings'
+    | '/translator'
+    | '/writer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BusinessRoute: typeof BusinessRoute
+  ChatRoute: typeof ChatRoute
+  LearningRoute: typeof LearningRoute
+  SettingsRoute: typeof SettingsRoute
+  TranslatorRoute: typeof TranslatorRoute
+  WriterRoute: typeof WriterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/business': {
+      id: '/business'
+      path: '/business'
+      fullPath: '/business'
+      preLoaderRoute: typeof BusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learning': {
+      id: '/learning'
+      path: '/learning'
+      fullPath: '/learning'
+      preLoaderRoute: typeof LearningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/translator': {
+      id: '/translator'
+      path: '/translator'
+      fullPath: '/translator'
+      preLoaderRoute: typeof TranslatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/writer': {
+      id: '/writer'
+      path: '/writer'
+      fullPath: '/writer'
+      preLoaderRoute: typeof WriterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BusinessRoute: BusinessRoute,
+  ChatRoute: ChatRoute,
+  LearningRoute: LearningRoute,
+  SettingsRoute: SettingsRoute,
+  TranslatorRoute: TranslatorRoute,
+  WriterRoute: WriterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
