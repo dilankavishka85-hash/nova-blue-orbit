@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><title>NOVA-AI Chat</title>
+<style>
+body{background:#0f0f0f;color:white;font-family:Arial;text-align:center;padding:20px}
+h1{color:#00ffcc}
+#box{max-width:500px;margin:auto;text-align:left;background:#1a1a1a;padding:15px;border-radius:15px;height:300px;overflow-y:auto}
+input{padding:12px;width:70%;border-radius:20px;border:none;margin-top:10px}
+button{padding:12px 20px;border-radius:20px;background:#00ffcc;border:none;font-weight:bold}
+</style>
+</head>
+<body>
+<h1>NOVA-AI 🤖</h1>
+<p>API Key eka 1 parak witharak danna. Eeta passe FREE Chat!</p>
+<input id="key" placeholder="Gemini API Key eka methana danna">
+<button onclick="saveKey()">Save Key</button>
+<div id="box"></div>
+<input id="q" placeholder="Mokakda ahanna one?">
+<button onclick="ask()">Send</button>
+<script>
+function saveKey(){ localStorage.setItem("k", document.getElementById("key").value); alert("Key Save una!"); }
+async function ask(){
+ let q=document.getElementById("q").value;
+ let key=localStorage.getItem("k");
+ let box=document.getElementById("box");
+ box.innerHTML += "<p><b>You:</b> "+q+"</p>";
+ box.innerHTML += "<p><b>NOVA:</b> Hithanawa...</p>";
+ let res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="+key, {
+  method:"POST", headers:{"Content-Type":"application/json"},
+  body: JSON.stringify({contents:[{parts:[{text:q}]}]})
+ });
+ let data = await res.json();
+ let ans = data.candidates[0].content.parts[0].text;
+ box.innerHTML += "<p><b>NOVA:</b> "+ans+"</p>";
+}
+</script>
+</body>
+</html>
